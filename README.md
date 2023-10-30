@@ -1,1 +1,2 @@
 # NaiveBayesClassifier_OrangesVsGrapefruits
+The objective of the research was to employ a Naïve Bayes Classifier (NBC) for the classification of oranges and grapefruits, relying on five key features: diameter, weight, and three distinct colors. The study leveraged the Scikit-learn, pandas, and NumPy libraries to analyze a comprehensive dataset comprising over 10,000 data instances. Impressively, the model demonstrated its proficiency by achieving a remarkable 92% test accuracy.
