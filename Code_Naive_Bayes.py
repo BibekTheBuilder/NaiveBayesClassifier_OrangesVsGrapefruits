@@ -36,7 +36,7 @@ Y_train_pred = model.predict(X_train)
 Y_test_pred = model.predict(X_test)
 
 #define function for evaluation metrics
-def metric(X_true, Y_true, Y_pred):
+def metric(dataset, X_true, Y_true, Y_pred):
 
     #verify manual calculations
     print("Accuracy:", round(metrics.accuracy_score(Y_true, Y_pred), 4))
@@ -55,19 +55,19 @@ def metric(X_true, Y_true, Y_pred):
     print(" ")
 
     #plot ROC
-    plt.plot(FPR, TPR, lw=2, label=f'AUC = {auc * 100:.2f}%')
+    plt.plot(FPR, TPR, lw=2, label=f'AUC {dataset}= {auc * 100:.2f}%')
 
-#print evaluation metrics for train dataset
-metric(X_train, Y_train, Y_train_pred)
+#print evaluation metrics for training dataset
+metric('Train', X_train, Y_train, Y_train_pred)
 
 #print evaluation metrics for test dataset
-metric(X_test, Y_test, Y_test_pred)
+metric('Test', X_test, Y_test, Y_test_pred)
 
-#plot ROC for both train & test data
+#plot ROC for both training & test data
 plt.plot([0, 1], [0, 1], color='green', lw=2, linestyle='--')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('ROC Curves for Both Train & Test Datasets')
+plt.title('ROC Curves for Both Training & Test Datasets')
 plt.legend(loc="lower right")
 plt.show()
 
@@ -77,7 +77,7 @@ def metric_m(X_true, Y_true, Y_pred):
     #confusion matrix
     conf_matrix = metrics.confusion_matrix(Y_true, Y_pred)
 
-    #expand items from confusion matrix
+    #expand confusion matrix
     TN, FP, FN, TP = conf_matrix.ravel()
 
     #manually calculate & verify metrics
@@ -98,8 +98,8 @@ def metric_m(X_true, Y_true, Y_pred):
     print("Verified Log-Loss:", log_loss/N)
     print(" ")
 
-#for train dataset
+#print metrics for training dataset
 metric_m(X_train, Y_train, Y_train_pred)
 
-#for test dataset
+#print metrics for test dataset
 metric_m(X_test, Y_test, Y_test_pred)
